@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarSaathi</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4faf5;
+color:#183b2b;
+}
+
+header{
+background:#103f2a;
+color:white;
+padding:18px;
+font-size:24px;
+font-weight:bold;
+position:sticky;
+top:0;
+}
+
+header span{
+color:#b9f27c;
+}
+
+.hero{
+background:linear-gradient(145deg,#124d32,#287c4c);
+padding:70px 20px;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:38px;
+margin:15px 0;
+}
+
+.hero p{
+line-height:1.8;
+font-size:18px;
+}
+
+button{
+background:#c5f27c;
+color:#173b27;
+border:none;
+padding:14px 22px;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+section{
+padding:25px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:15px 0;
+border-radius:12px;
+box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+footer{
+background:#103f2a;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+☀️ Solar<span>Saathi</span>
+</header>
+
+<div class="hero">
+
+<h1>A Brighter, Greener Future</h1>
+
+<p>
+Learn Solar Energy, Calculate Savings,
+Find Installers and Chat with Solar AI.
+</p>
+
+<button>
+Explore Solar
+</button>
+
+</div>
+<section>
+
+<div class="card">
+<h2>☀️ Explore Solar</h2>
+<p>
+Learn how rooftop solar systems work and how they can reduce your electricity bill.
+</p>
+</div>
+
+<div class="card">
+<h2>🧮 Solar Savings Calculator</h2>
+
+<input
+id="bill"
+type="number"
+placeholder="Enter Monthly Electricity Bill (₹)">
+
+<input
+id="saving"
+type="number"
+value="40"
+placeholder="Saving Percentage">
+
+<button onclick="calculate()">
+Calculate Savings
+</button>
+
+<p id="result"></p>
+
+</div>
+
+<div class="card">
+<h2>🔎 Find Solar Installers</h2>
+
+<input
+id="searchCity"
+type="text"
+placeholder="Enter Your City">
+
+<button onclick="findProviders()">
+Search Installers
+</button>
+
+<p id="providerResults"></p>
+
+</div>
+
+<div class="card">
+<h2>🤝 Register Your Solar Business</h2>
+
+<input
+id="businessName"
+type="text"
+placeholder="Business Name">
+
+<input
+id="businessCity"
+type="text"
+placeholder="Service City">
+
+<input
+id="businessPhone"
+type="tel"
+placeholder="Phone Number">
+
+<button onclick="registerInstaller()">
+Register Business
+</button>
+
+<p id="registrationResult"></p>
+
+</div>
+
+</section><!-- AI Chat Button -->
+<button id="chatBtn"
+style="position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;font-size:24px;z-index:999;">
+🤖
+</button>
+
+<!-- AI Chat Box -->
+<div id="chatBox"
+style="display:none;position:fixed;bottom:90px;right:20px;width:320px;background:#fff;border:1px solid #ccc;border-radius:12px;padding:12px;box-shadow:0 4px 10px rgba(0,0,0,.2);z-index:999;">
+
+<h3>☀️ SolarSaathi AI</h3>
+
+<div id="messages"
+style="height:220px;overflow-y:auto;border:1px solid #ddd;padding:8px;margin-bottom:10px;">
+<p><b>AI:</b> Hello 👋 Welcome to SolarSaathi. Ask me anything about solar energy.</p>
+</div>
+
+<input
+id="userInput"
+type="text"
+placeholder="Ask your question...">
+
+<button onclick="sendMessage()" style="width:100%;">
+Send
+</button>
+
+</div>
+
+<footer>
+
+<h3>☀️ SolarSaathi</h3>
+
+<p>Learn • Save • Go Solar</p>
+
+<p>© 2026 SolarSaathi. All Rights Reserved.</p>
+
+</footer>
+
+<script>function calculate() {
+  const bill = Number(document.getElementById("bill").value);
+  const percent = Number(document.getElementById("saving").value);
+
+  if (!bill || bill <= 0) {
+    document.getElementById("result").innerHTML =
+      "⚠️ Please enter a valid electricity bill.";
+    return;
+  }
+
+  const monthly = (bill * percent) / 100;
+  const yearly = monthly * 12;
+
+  document.getElementById("result").innerHTML =
+    "💰 Monthly Saving: ₹" + monthly.toFixed(0) +
+    "<br>📅 Yearly Saving: ₹" + yearly.toFixed(0);
+}
+
+function findProviders() {
+  const city = document.getElementById("searchCity").value.trim();
+
+  document.getElementById("providerResults").innerHTML =
+    city
+      ? "🔍 No verified installers found in <b>" + city + "</b> yet."
+      : "Please enter your city.";
+}
+
+function registerInstaller() {
+  const name = document.getElementById("businessName").value.trim();
+  const city = document.getElementById("businessCity").value.trim();
+
+  document.getElementById("registrationResult").innerHTML =
+    "✅ Registration prepared for <b>" + name + "</b> (" + city + ").";
+}
+
+document.getElementById("chatBtn").onclick = function () {
+  const box = document.getElementById("chatBox");
+  box.style.display =
+    box.style.display === "block" ? "none" : "block";
+};
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  let msg = input.value.trim();
+
+  if (msg === "") return;
+
+  const messages = document.getElementById("messages");
+
+  messages.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+
+  let reply = "";
+  const text = msg.toLowerCase();
+
+  if (text.includes("solar")) {
+    reply = "☀️ Solar energy sunlight se electricity banati hai.";
+  } else if (text.includes("panel")) {
+    reply = "☀️ Solar panel sunlight ko electricity me convert karta hai.";
+  } else if (text.includes("battery")) {
+    reply = "🔋 Battery solar energy ko store karti hai.";
+  } else if (text.includes("cost") || text.includes("price")) {
+    reply = "💰 Solar system ki cost size aur location par depend karti hai.";
+  } else if (text.includes("subsidy")) {
+    reply = "🏠 Government rooftop solar ke liye subsidy schemes deti hai.";
+  } else if (text.includes("benefit")) {
+    reply = "🌱 Solar se electricity bill aur pollution dono kam ho sakte hain.";
+  } else if (text.includes("inverter")) {
+    reply = "⚡ Inverter DC electricity ko AC me convert karta hai.";
+  } else if (text.includes("hello") || text.includes("hi")) {
+    reply = "👋 Hello! Main SolarSaathi AI hoon.";
+  } else {
+    reply = "🤖 Sorry, mujhe is question ka answer abhi nahi pata.";
+  }
+
+  messages.innerHTML += "<p><b>AI:</b> " + reply + "</p>";
+
+  input.value = "";
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
+
+</body>
+</html>
