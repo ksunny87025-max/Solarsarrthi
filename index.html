@@ -365,27 +365,26 @@ document.getElementById("chatBtn").onclick = function () {
 
 function sendMessage() {
   const input = document.getElementById("userInput");
-  const msg = input.value.toLowerCase().trim();
-  if (!msg) return;
+  const msg = input.value.trim();
+
+  if (msg === "") return;
 
   const messages = document.getElementById("messages");
+
+  // User message
   messages.innerHTML += `<p><b>You:</b> ${msg}</p>`;
 
   let reply = "";
 
-  if (msg.includes("solar")) {
-    reply = "Solar energy sunlight se electricity banati hai.";
-  } else if (msg.includes("cost") || msg.includes("price")) {
-    reply = "Solar system ki price capacity aur city par depend karti hai.";
-  } else if (msg.includes("subsidy")) {
-    reply = "Government rooftop solar par subsidy deti hai. Details state aur scheme ke hisaab se badal sakti hain.";
-  } else if (msg.includes("3kw")) {
-    reply = "3kW system ek average ghar ke liye suitable ho sakta hai.";
-  } else {
-    reply = "Sorry, mujhe abhi is question ka answer nahi pata. Jaldi hi main aur smart banunga!";
-  }
-
-  messages.innerHTML += `<p><b>AI:</b> ${reply}</p>`;
-  input.value = "";
-  messages.scrollTop = messages.scrollHeight;
+  if (msg.toLowerCase().includes("solar")) {
+    reply = "☀️ Solar energy sunlight se electricity banati hai.";
+  } else if (
+    msg.toLowerCase().includes("cost") ||
+    msg.toLowerCase().includes("price")
+  ) {
+    reply = "💰 Solar system ki cost capacity aur city ke hisaab se badalti hai.";
+  } else if (msg.toLowerCase().includes("subsidy")) {
+    reply = "🏠 Government rooftop solar par subsidy deti hai. Rules state aur scheme ke hisaab se badal sakte hain.";
+  } else if (msg.toLowerCase().includes("3kw")) {
+    reply = "⚡ 3kW solar system ek average ghar
 }
