@@ -377,31 +377,6 @@ function sendMessage() {
   let reply = "";
 if (msg.toLowerCase().includes("solar")) {
   reply = "☀️ Solar energy sunlight se electricity banati hai.";
-} else if (
-  msg.toLowerCase().includes("cost") ||
-  msg.toLowerCase().includes("price")
-) {
-  reply = "💰 Solar system ki cost capacity aur city ke hisaab se badalti hai.";
-} else if (msg.toLowerCase().includes("subsidy")) {
-  reply = "🏠 Government rooftop solar par subsidy deti hai. Rules state aur scheme ke hisaab se badal sakte hain.";
-} else if (msg.toLowerCase().includes("3kw")) {
-  reply = "⚡ 3kW solar system ek average ghar ke liye suitable ho sakta hai.";
-} else if (
-  msg.toLowerCase().includes("hi") ||
-  msg.toLowerCase().includes("hello")
-) {
-  reply = "👋 Hello! Main SolarSaathi AI hoon. Solar se related koi bhi question puchho.";
-} else {
-  reply = "🤖 Sorry, mujhe is question ka answer abhi nahi pata.";
-}
-
-messages.innerHTML += `<p><b>AI:</b> ${reply}</p>`;
-input.value = "";
-messages.scrollTop = messages.scrollHeight;
-}
-</script>
-else if (msg.toLowerCase().includes("benefit")) {
-  reply = "🌱 Solar se bijli ka bill kam hota hai aur environment ko fayda hota hai.";
 }
 else if (msg.toLowerCase().includes("panel")) {
   reply = "☀️ Solar panel sunlight ko electricity mein convert karta hai.";
@@ -409,12 +384,34 @@ else if (msg.toLowerCase().includes("panel")) {
 else if (msg.toLowerCase().includes("battery")) {
   reply = "🔋 Battery solar energy ko store karti hai taaki raat mein bhi use kar sako.";
 }
-else if (msg.toLowerCase().includes("installation")) {
-  reply = "🏠 Installation ke liye roof survey, panel mounting aur inverter setup kiya jata hai.";
+else if (
+  msg.toLowerCase().includes("cost") ||
+  msg.toLowerCase().includes("price")
+) {
+  reply = "💰 Solar system ki cost capacity aur city ke hisaab se badalti hai.";
+}
+else if (msg.toLowerCase().includes("benefit")) {
+  reply = "🌱 Solar se bijli ka bill kam hota hai aur environment ko fayda hota hai.";
+}
+else if (msg.toLowerCase().includes("subsidy")) {
+  reply = "🏠 Government rooftop solar par subsidy deti hai.";
 }
 else if (msg.toLowerCase().includes("inverter")) {
-  reply = "⚡ Solar inverter DC electricity ko AC electricity mein convert karta hai.";
+  reply = "⚡ Solar inverter DC ko AC mein convert karta hai.";
 }
-else if (msg.toLowerCase().includes("maintenance")) {
-  reply = "🧹 Solar panels ko saaf rakhna aur time-time par check karna maintenance ka main part hai.";
+else if (msg.toLowerCase().includes("installation")) {
+  reply = "🏠 Installation mein roof survey, mounting aur wiring hoti hai.";
 }
+else if (
+  msg.toLowerCase().includes("hi") ||
+  msg.toLowerCase().includes("hello")
+) {
+  reply = "👋 Hello! Main SolarSaathi AI hoon.";
+}
+else {
+  reply = "🤖 Sorry, mujhe iska answer abhi nahi pata.";
+}
+
+messages.innerHTML += `<p><b>AI:</b> ${reply}</p>`;
+input.value = "";
+messages.scrollTop = messages.scrollHeight;
