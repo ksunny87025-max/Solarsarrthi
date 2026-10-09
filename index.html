@@ -365,16 +365,27 @@ document.getElementById("chatBtn").onclick = function () {
 
 function sendMessage() {
   const input = document.getElementById("userInput");
-  const msg = input.value.trim();
+  const msg = input.value.toLowerCase().trim();
   if (!msg) return;
 
   const messages = document.getElementById("messages");
+  messages.innerHTML += `<p><b>You:</b> ${msg}</p>`;
 
-  messages.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+  let reply = "";
 
-  messages.innerHTML += "<p><b>AI:</b> I'm still being trained. Soon I'll answer questions about solar energy!</p>";
+  if (msg.includes("solar")) {
+    reply = "Solar energy sunlight se electricity banati hai.";
+  } else if (msg.includes("cost") || msg.includes("price")) {
+    reply = "Solar system ki price capacity aur city par depend karti hai.";
+  } else if (msg.includes("subsidy")) {
+    reply = "Government rooftop solar par subsidy deti hai. Details state aur scheme ke hisaab se badal sakti hain.";
+  } else if (msg.includes("3kw")) {
+    reply = "3kW system ek average ghar ke liye suitable ho sakta hai.";
+  } else {
+    reply = "Sorry, mujhe abhi is question ka answer nahi pata. Jaldi hi main aur smart banunga!";
+  }
 
+  messages.innerHTML += `<p><b>AI:</b> ${reply}</p>`;
   input.value = "";
   messages.scrollTop = messages.scrollHeight;
 }
-</script>
