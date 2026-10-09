@@ -375,16 +375,29 @@ function sendMessage() {
   messages.innerHTML += `<p><b>You:</b> ${msg}</p>`;
 
   let reply = "";
-
-  if (msg.toLowerCase().includes("solar")) {
-    reply = "☀️ Solar energy sunlight se electricity banati hai.";
-  } else if (
-    msg.toLowerCase().includes("cost") ||
-    msg.toLowerCase().includes("price")
-  ) {
-    reply = "💰 Solar system ki cost capacity aur city ke hisaab se badalti hai.";
-  } else if (msg.toLowerCase().includes("subsidy")) {
-    reply = "🏠 Government rooftop solar par subsidy deti hai. Rules state aur scheme ke hisaab se badal sakte hain.";
-  } else if (msg.toLowerCase().includes("3kw")) {
-    reply = "⚡ 3kW solar system ek average ghar
+if (msg.toLowerCase().includes("solar")) {
+  reply = "☀️ Solar energy sunlight se electricity banati hai.";
+} else if (
+  msg.toLowerCase().includes("cost") ||
+  msg.toLowerCase().includes("price")
+) {
+  reply = "💰 Solar system ki cost capacity aur city ke hisaab se badalti hai.";
+} else if (msg.toLowerCase().includes("subsidy")) {
+  reply = "🏠 Government rooftop solar par subsidy deti hai. Rules state aur scheme ke hisaab se badal sakte hain.";
+} else if (msg.toLowerCase().includes("3kw")) {
+  reply = "⚡ 3kW solar system ek average ghar ke liye suitable ho sakta hai.";
+} else if (
+  msg.toLowerCase().includes("hi") ||
+  msg.toLowerCase().includes("hello")
+) {
+  reply = "👋 Hello! Main SolarSaathi AI hoon. Solar se related koi bhi question puchho.";
+} else {
+  reply = "🤖 Sorry, mujhe is question ka answer abhi nahi pata.";
 }
+
+messages.innerHTML += `<p><b>AI:</b> ${reply}</p>`;
+input.value = "";
+messages.scrollTop = messages.scrollHeight;
+}
+</script>
+  
