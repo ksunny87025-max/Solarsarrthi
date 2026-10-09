@@ -642,7 +642,29 @@ window.scrollTo({
   behavior:"smooth"
 });
 
-};
+};function calculateEMI(){
+
+const cost = Number(document.getElementById("systemCost").value);
+
+const months = Number(document.getElementById("months").value);
+
+if(cost <= 0 || months <= 0){
+
+document.getElementById("emiResult").innerHTML =
+"⚠️ Please enter valid values.";
+
+return;
+
+}
+
+const emi = cost / months;
+
+document.getElementById("emiResult").innerHTML =
+"💰 Estimated Monthly EMI: <b>₹" +
+emi.toFixed(0) +
+"</b>";
+
+  }
 </script>
 
 </body>
