@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolarSaathi | Clean Energy</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4faf5;
+      color: #183b2b;
+    }
+
+    header {
+      padding: 18px;
+      background: #103f2a;
+      color: white;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    header span {
+      color: #b9f27c;
+    }
+
+    .hero {
+      padding: 55px 22px;
+      text-align: center;
+      background: linear-gradient(145deg, #124d32, #287c4c);
+      color: white;
+    }
+
+    .sun {
+      font-size: 55px;
+    }
+
+    h1 {
+      font-size: 37px;
+      margin: 15px 0;
+    }
+
+    .hero p {
+      line-height: 1.7;
+      color: #e0f3e5;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 14px 20px;
+      background: #c5f27c;
+      color: #173b27;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 25px 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      margin: 14px 0;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px #153d2810;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      margin: 12px 0;
+      border: 1px solid #bdd4c2;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    #result {
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 22px;
+      background: #103f2a;
+      color: white;
+      text-align: center;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>☀️ Solar<span>Saathi</span></header>
+
+  <div class="hero">
+    <div class="sun">☀️</div>
+    <h1>A Brighter, Greener Future</h1>
+    <p>
+      Explore solar energy, learn about rooftop
+      systems, and discover how to compare
+      installation options for your home.
+    </p>
+    <button onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})">
+      Explore Solar
+    </button>
+  </div>
+
+  <section>
+    <h2>What Can You Do?</h2>
+
+    <div class="card">
+      <h3>☀️ Explore Solar</h3>
+      <p>Understand rooftop solar systems and the questions to ask before installing one.</p>
+    </div>
+
+    <div class="card">
+      <h3>🧮 Estimate Your Savings</h3>
+      <p>Try our basic calculator to explore potential electricity-bill savings.</p>
+    </div>
+
+    <div class="card">
+      <h3>🤝 Find Installers</h3>
+      <p>Our next step is to help you discover and compare solar installation providers.</p>
+    </div>
+  </section>
+
+  <section id="calculator">
+    <h2>Solar Savings Calculator</h2>
+    <div class="card">
+      <label for="bill">Monthly electricity bill (₹)</label>
+      <input id="bill" type="number" min="0" placeholder="Example: 1500">
+
+      <label for="saving">Estimated bill reduction (%)</label>
+      <input id="saving" type="number" min="0" max="100" value="40">
+
+      <button onclick="calculate()">Calculate Estimate</button>
+      <p id="result" aria-live="polite"></p>
+      <p><small>
+        Illustrative estimate only, not a guaranteed saving.
+        Actual results depend on your usage, tariff, system,
+        weather, costs and applicable rules.
+      </small></p>
+    </div>
+  </section>
+
+  <footer>
+    SolarSaathi — Learn about clean energy 🌱
+    <p>Independent educational project. Not a government website.</p>
+  </footer>
+
+  <script>
+    function calculate() {
+      const bill = Number(document.getElementById("bill").value);
+      const percent = Number(document.getElementById("saving").value);
+      const result = document.getElementById("result");
+
+      if (
+        document.getElementById("bill").value === "" ||
+        bill < 0 ||
+        !Number.isFinite(bill) ||
+        !Number.isFinite(percent) ||
+        percent < 0 ||
+        percent > 100
+      ) {
+        result.textContent =
+          "Enter a valid bill and a percentage from 0 to 100.";
+        return;
+      }
+
+      const monthly = bill * percent / 100;
+      const yearly = monthly * 12;
+
+      result.textContent =
+        "Illustrative monthly reduction: ₹" +
+        monthly.toFixed(0) +
+        ". Illustrative yearly reduction: ₹" +
+        yearly.toFixed(0) +
+        ". These are estimates, not promised savings.";
+    }
+  </script>
+</body>
+</html>
+<section id="installers">
+  <h2>🔎 Find Solar Installers</h2>
+
+  <div class="card">
+    <p>Interested in rooftop solar? Share your details to prepare an enquiry.</p>
+
+    <form id="solarForm">
+      <label for="customerName">Your Name</label>
+      <input id="customerName" type="text"
+        placeholder="Enter your name" required>
+
+      <label for="city">Your City</label>
+      <input id="city" type="text"
+        placeholder="Enter your city" required>
+
+      <label for="customerBill">Monthly Electricity Bill (₹)</label>
+      <input id="customerBill" type="number"
+        min="0" placeholder="Example: 1500" required>
+
+      <button type="submit">Prepare Enquiry</button>
+    </form>
+
+    <p id="enquiryResult" aria-live="polite"></p>
+  </div>
+</section>
+
+<script>
+document.getElementById("solarForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("customerName").value.trim();
+  const city = document.getElementById("city").value.trim();
+  const bill = Number(document.getElementById("customerBill").value);
+
+  if (!name || !city || bill < 0 || !Number.isFinite(bill)) {
+    document.getElementById("enquiryResult").textContent =
+      "Please enter valid details.";
+    return;
+  }
+
+  document.getElementById("enquiryResult").textContent =
+    "Enquiry draft prepared for " + name + " in " + city +
+    ". Monthly bill: ₹" + bill +
+    ". No enquiry has been sent yet.";
+});
+</script>
+
+<section id="directory">
+  <h2>☀️ Solar Installer Directory</h2>
+
+  <div class="card">
+    <p>Find solar service providers by city.</p>
+
+    <label for="searchCity">Enter your city</label>
+    <input
+      id="searchCity"
+      type="text"
+      placeholder="Example: Patna"
+    >
+
+    <button onclick="findProviders()">
+      Search Providers
+    </button>
+
+    <div id="providerResults" aria-live="polite"></div>
+  </div>
+</section>
+
+<script>
+function findProviders() {
+  const city = document.getElementById("searchCity")
+    .value.trim();
+
+  const results = document.getElementById("providerResults");
+
+  if (!city) {
+    results.textContent = "Please enter your city.";
+    return;
+  }
+
+  results.textContent =
+    "Thanks! We are building our verified installer directory " +
+    "for " + city +
+    ". No verified providers have been added yet.";
+}
+</script>
+
+<section id="register">
+  <h2>🤝 Register Your Solar Business</h2>
+
+  <div class="card">
+    <p>Are you a solar installer? Register your interest.</p>
+
+    <form id="installerForm">
+      <label for="businessName">Business Name</label>
+      <input id="businessName" required
+        placeholder="Enter business name">
+
+      <label for="businessCity">Service City</label>
+      <input id="businessCity" required
+        placeholder="Enter city">
+
+      <label for="businessPhone">Business Phone</label>
+      <input id="businessPhone" type="tel"
+        required placeholder="Enter contact number">
+
+      <button type="submit">Prepare Registration</button>
+    </form>
+
+    <p id="registrationResult" aria-live="polite"></p>
+  </div>
+</section>
+
+<script>
+document.getElementById("installerForm")
+.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("businessName")
+    .value.trim();
+  const city = document.getElementById("businessCity")
+    .value.trim();
+  const phone = document.getElementById("businessPhone")
+    .value.trim();
+
+  if (!name || !city || !phone) {
+    document.getElementById("registrationResult")
+      .textContent = "Please complete all fields.";
+    return;
+  }
+
+  document.getElementById("registrationResult")
+    .textContent =
+      "Registration draft prepared for " + name +
+      " in " + city +
+      ". Your details have not been submitted or saved.";
+});
+</script>
+
