@@ -359,6 +359,9 @@ function sendMessage() {
   const messages = document.getElementById("messages");
 
   messages.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+  document.getElementById("themeBtn").onclick = function () {
+  document.body.classList.toggle("dark");
+};
 
   let reply = "";
   const text = msg.toLowerCase();
