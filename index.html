@@ -335,4 +335,46 @@ document.getElementById("installerForm")
       ". Your details have not been submitted or saved.";
 });
 </script>
+<!-- AI Chat Button -->
+<button id="chatBtn">🤖 AI</button>
 
+<!-- AI Chat Window -->
+<div id="chatBox" style="display:none;position:fixed;bottom:20px;right:20px;width:300px;background:#fff;border:1px solid #ccc;border-radius:10px;padding:10px;box-shadow:0 4px 10px rgba(0,0,0,.2);">
+  <h3>SolarSaathi AI</h3>
+
+  <div id="messages" style="height:180px;overflow:auto;border:1px solid #ddd;padding:8px;margin-bottom:10px;">
+    <p><b>AI:</b> Hi! Ask me anything about solar energy.</p>
+  </div>
+
+  <input
+    id="userInput"
+    type="text"
+    placeholder="Type your question..."
+    style="width:100%;padding:8px;"
+  >
+
+  <button onclick="sendMessage()" style="margin-top:10px;width:100%;">
+    Send
+  </button>
+</div>
+
+<script>
+document.getElementById("chatBtn").onclick = function () {
+  document.getElementById("chatBox").style.display = "block";
+};
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const messages = document.getElementById("messages");
+
+  messages.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+
+  messages.innerHTML += "<p><b>AI:</b> I'm still being trained. Soon I'll answer questions about solar energy!</p>";
+
+  input.value = "";
+  messages.scrollTop = messages.scrollHeight;
+}
+</script>
